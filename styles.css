@@ -1,0 +1,597 @@
+:root {
+    --font-stack: Amarante, serif;
+    --frame-fill: #8c3e26;
+    --frame-border: #e1ad45;
+    --frame-border-width: 1rem;
+    --frame-margin: 4rem;
+    --frame-padding: 1.5rem;
+    --button-fill: #cf6530;
+    --button-border: #ffd36a;
+    --font-color: white;
+    --music-fill: #0c9ef2;
+    --nav-border-width: 0.2rem;
+    --nav-item-padding: 0.35em 0.8em;
+    --error-color: #ff3d3d;
+    --background-color: #1a1a1a;
+    --background-image: url("assets/Village_art.webp");
+    --form-field-background: white;
+    --form-field-color: black;
+    --staff-rotation: 180deg;
+    --theme-button-color: #c4ff85;
+}
+
+:root[data-theme="dark"] {
+    --frame-fill: #01001a;
+    --frame-border: #762294;
+    --button-fill: #12224a;
+    --button-border: #b342db;
+    --font-color: #c7fffa;
+    --music-fill: #00329e;
+    --background-image: url("assets/PlanetariumConcept.png");
+    --form-field-background: black;
+    --form-field-color: white;
+    --staff-rotation: 0deg;
+    --theme-button-color: #ffe83b;
+}
+
+
+
+@font-face {
+    font-family: Amarante;
+    src: url("assets/Amarante/Amarante-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: var(--font-stack);
+    color: var(--font-color);
+    line-height: 1.5;
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--button-border);
+}
+
+a:hover,
+button:hover {
+    color: var(--font-color);
+}
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+iframe:focus {
+    outline: 0.15rem solid var(--font-color);
+    outline-offset: 0.15rem;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+
+    img {
+        width: 36rem;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+page-description {
+    display: block;
+    text-align: center;
+}
+
+music-ranking {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: var(--frame-padding);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--frame-padding);
+    border: 0.35rem solid var(--frame-border);
+    background-color: var(--music-fill);
+    text-align: center;
+
+    ol {
+        list-style-position: inside;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+img,
+iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label[for="nitrorad-video"] {
+    text-align: center;
+    display: block;
+    margin-top: 0.75em;
+}
+
+button {
+    padding: var(--nav-item-padding);
+    border: var(--nav-border-width) solid var(--button-border);
+    background-color: var(--button-fill);
+    color: var(--button-border);
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--form-field-background);
+    color: var(--form-field-color);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: var(--frame-padding);
+    margin: 2rem var(--frame-margin) 0;
+    view-transition-name: page-header;
+}
+
+site-logo {
+    a {
+        display: block;
+        border-radius: 50%;
+    }
+
+    a:hover,
+    a:focus {
+        outline: none;
+        box-shadow: 0 0 1.5rem white;
+    }
+
+    svg {
+        display: block;
+        width: 6rem;
+        height: 6rem;
+    }
+}
+
+nav {
+    flex: 1;
+    padding: 1rem;
+    border: var(--frame-border-width) solid var(--frame-border);
+    background-color: var(--frame-fill);
+
+    /* Child: the top row of nav links */
+    > ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+            position: relative;
+        }
+    }
+
+    li:hover > nav-dropdown,
+    li:focus-within > nav-dropdown {
+        display: flex;
+    }
+}
+
+nav-item {
+    display: inline-block;
+
+    a {
+        display: block;
+        padding: var(--nav-item-padding);
+        border: var(--nav-border-width) solid var(--button-border);
+        background-color: var(--button-fill);
+        color: var(--button-border);
+        text-decoration: none;
+    }
+}
+
+nav-dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100% - var(--nav-border-width));
+    z-index: 1;
+    flex-direction: column;
+    background-color: var(--button-fill);
+    border: var(--nav-border-width) solid var(--button-border);
+    white-space: nowrap;
+}
+
+nav-sub-item {
+    display: block;
+
+    a {
+        display: block;
+        padding: var(--nav-item-padding);
+        color: var(--button-border);
+        text-decoration: none;
+    }
+}
+
+/* Adjacent sibling: the line between one game and the next */
+nav-sub-item + nav-sub-item {
+    border-top: 1px solid var(--button-border);
+}
+
+main {
+    margin: var(--frame-margin);
+    padding: var(--frame-padding);
+    border: var(--frame-border-width) solid var(--frame-border);
+    background-color: var(--frame-fill);
+
+    view-transition-name: main-content;
+}
+
+#home-links {
+    display: flex;
+    align-items: stretch;
+    gap: var(--frame-padding);
+
+    a {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 0.6em;
+        border: var(--nav-border-width) solid var(--button-border);
+        background-color: var(--button-fill);
+        font-size: 3rem;
+        line-height: 1.1;
+        text-align: center;
+        text-decoration: none;
+    }
+}
+
+#footer-buttons {
+    flex-shrink: 0;
+    display: flex;
+    gap: var(--frame-padding);
+}
+
+footer {
+    margin-top: auto;
+    padding: var(--frame-padding) var(--frame-padding) 5rem;
+    border-top: var(--frame-border-width) solid var(--frame-border);
+    background-color: var(--frame-fill);
+    display: flex;
+    align-items: center;
+    gap: var(--frame-padding);
+
+    p {
+        flex: 1;
+        margin: 0;
+        margin-right: auto;
+    }
+
+    overflow: clip;
+
+    view-transition-name: page-footer;
+}
+
+game-card {
+    display: block;
+    margin-top: var(--frame-padding);
+
+    a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover article,
+    a:focus article {
+        border-color: var(--font-color);
+    }
+
+    article {
+        display: grid;
+        column-gap: var(--frame-padding);
+        align-items: start;
+        padding: var(--frame-padding);
+        border: var(--frame-border-width) solid var(--frame-border);
+        background-color: var(--frame-fill);
+    }
+
+    img {
+        grid-row: 1 / span 3;
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+}
+
+/* Attribute: game cards with the cover on the left */
+@media (min-width: 40rem) {
+    game-card[class="image-left"] {
+        article {
+            grid-template-columns: 12rem 1fr;
+        }
+
+        img {
+            grid-column: 1;
+        }
+
+        h2,
+        release-date,
+        p {
+            grid-column: 2;
+        }
+    }
+}
+
+/* Attribute: game cards with the cover on the right */
+@media (min-width: 40rem) {
+    game-card[class="image-right"] {
+        article {
+            grid-template-columns: 1fr 12rem;
+        }
+
+        img {
+            grid-column: 2;
+        }
+
+        h2,
+        release-date,
+        p {
+            grid-column: 1;
+        }
+    }
+}
+
+release-date {
+    display: block;
+}
+
+dialog {
+    background-color: var(--frame-fill);
+    border: var(--frame-border-width) solid var(--frame-border);
+    padding: var(--frame-padding);
+    font-family: var(--font-stack);
+    color: var(--font-color);
+
+    scale: 0;
+    transition: scale 0.3s, display 0.3s, overlay 0.3s;
+    transition-behavior: allow-discrete;
+    transition-timing-function: ease-in;
+}
+dialog:open {
+    scale: 1;
+    transition-timing-function: ease-out;
+}
+@starting-style {
+    dialog:open {
+        scale: 0;
+    }
+}
+
+form {
+    hr {
+        border: none;
+        border-top: 1px solid var(--button-border);
+    }
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding-top: var(--frame-padding);
+}
+
+legend {
+    font-weight: bold;
+}
+
+input, textarea {
+    padding: var(--nav-item-padding);
+    border: var(--nav-border-width) solid var(--frame-border);
+}
+input:user-invalid, textarea:user-invalid {
+    box-shadow: 0 0 2rem var(--error-color);
+    border-color: var(--error-color);
+}
+
+form-detail {
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+char-count {
+    font-size: 0.75em;
+    font-style: italic;
+}
+
+char-count.warning {
+    color: var(--error-color);
+}
+
+error-message {
+    color: var(--error-color);
+}
+
+dialog::backdrop {
+    background-color: rgb(0 0 0 / 70%);
+}
+
+#theme-button {
+    max-width: 7rem;
+    background: none;
+    border: none;
+    color: var(--theme-button-color);
+    text-shadow: 0 0 0.3em black;
+}
+#theme-button:focus {
+    outline: none;
+}
+
+theme-toggle {
+    position: relative;
+    z-index: 0;
+}
+
+theme-toggle:focus-within img,
+theme-toggle:has(#theme-button:hover) img {
+    filter: drop-shadow(0 0 0.3em var(--font-color));
+}
+
+#theme-staff {
+    position: absolute;
+    z-index: -1;
+    width: 8rem;
+    height: auto;
+    top: -1.75rem;
+    left: 50%;
+    translate: -50% 0;
+    margin: 0;
+    rotate: var(--staff-rotation);
+    transition: rotate 0.5s ease-in-out;
+}
+
+@media (max-width: 40rem) {
+    header,
+    main {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav > ul {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    nav-item {
+        display: block;
+    }
+
+    nav-dropdown {
+        position: static;
+        white-space: normal;
+    }
+
+    #home-links {
+        flex-direction: column;
+    }
+    
+    #footer-buttons {
+        flex-direction: column-reverse;
+    }
+
+    game-card article {
+        grid-template-columns: 1fr;
+    }
+
+    game-card img,
+    game-card h2,
+    game-card release-date,
+    game-card p {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    iframe {
+        max-width: 100%;
+    }
+}
+
+
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(page-header),
+::view-transition-group(page-footer) {
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(main-content) {
+    animation: 0.3s ease-in both shrink-out;
+}
+::view-transition-new(main-content) {
+    animation: 0.3s ease-out 0.3s both grow-in;
+}
+
+@keyframes shrink-out {
+    to {
+        scale: 0;
+    }
+}
+
+@keyframes grow-in {
+    from {
+        scale: 0;
+    }
+}
+
+:root:active-view-transition nav-dropdown {
+    display: none;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    #theme-staff {
+        transition: none;
+    }
+    ::view-transition-old(main-content),
+    ::view-transition-new(main-content),
+    ::view-transition-old(page-header),
+    ::view-transition-new(page-header),
+    ::view-transition-old(page-footer),
+    ::view-transition-new(page-footer) {
+        animation: none;
+    }
+    dialog {
+        transition: none;
+    }
+}
