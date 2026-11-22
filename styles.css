@@ -119,6 +119,30 @@ music-ranking {
     }
 }
 
+fun-fact {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: var(--frame-padding);
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--frame-padding);
+    border: 0.35rem solid var(--frame-border);
+    background-color: var(--music-fill);
+    text-align: center;
+    h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+#minimize-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
 img,
 iframe {
     display: block;
