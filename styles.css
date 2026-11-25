@@ -120,6 +120,12 @@ music-ranking {
 }
 
 fun-fact {
+    --fact-background: var(--music-fill);
+    --fact-text: var(--font-color);
+    --fact-border: var(--frame-border);
+}
+
+fun-fact {
     display: block;
     width: fit-content;
     max-width: 100%;
@@ -127,8 +133,9 @@ fun-fact {
     margin-left: auto;
     margin-right: auto;
     padding: var(--frame-padding);
-    border: 0.35rem solid var(--frame-border);
-    background-color: var(--music-fill);
+    border: 0.35rem solid var(--fact-border, #e1ad45);
+    background-color: var(--fact-background, #0c9ef2);
+    color: var(--fact-text, white);
     text-align: center;
     h2 {
         margin-top: 0;
