@@ -6,24 +6,21 @@ class FunFact extends HTMLElement {
         const factText = document.createElement('p');
         factText.textContent = 'No fact loaded.';
         factText.id = 'fact-text'
-        factText.hidden = 'hidden';
         
         const factButton = document.createElement('button');
         factButton.textContent = 'Tell me something about cats';
         factButton.id = 'fact-button';
-        factButton.hidden = 'hidden';
 
         const factStatus = document.createElement('p');
         factStatus.textContent = 'Awaiting fetch request...';
         factStatus.id = 'fact-status'
-        factStatus.hidden = 'hidden';
 
         const frag = document.createDocumentFragment();
         frag.append(header, factText, factButton, factStatus);
         this.appendChild(frag);
         factStatus.setAttribute('role', 'status');
 
-        let mode = 'minimized';
+        let mode = 'expanded';
         try {
             const savedMode = localStorage.getItem('fun-fact-mode');
             if (savedMode === 'minimized' || savedMode === 'expanded') {
