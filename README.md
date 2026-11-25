@@ -1,0 +1,4 @@
+SSG exercise: ssg-exercise/
+Pages to preview: Home (/) and Games (/games/)
+Design note:
+The user wants to see a new cat fact other than the one currently displayed. They click "Tell me something about cats". This calls fetchFact(), which disables the button, sets the status to "Loading cat fact...", and requests a fact from https://catfact.ninja/fact. The code checks that the response is OK and that it has a fact. Then it sets the fact paragraph's textContent to the new fact. While the user waits, the status says "Loading cat fact..." and the button is disabled. If the request succeeds, the new fact shows and the status says "Cat fact successfully loaded!" If the request fails, the status says "Cat fact failed to load." Either way, the button is enabled again so the user can request another fact.
